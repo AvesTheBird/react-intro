@@ -51,11 +51,12 @@ import { useState } from 'react';
 // style required by RubberBand
 import '@maxgraph/core/css/common.css';
 import { render } from 'react-dom';
-import "./file-uploader.css";
+
 
 
 
 export const YourComponent = ({ graph }) => {
+  
   const graphContainerRef = useRef(null);
   let [variableFromEffect, setVariableFromEffect] = useState(null);
   graph = variableFromEffect;
@@ -68,7 +69,7 @@ export const YourComponent = ({ graph }) => {
       imageUrl: 'images/grid.gif'
     });
     parentContainer.appendChild(container);
-
+    //console.log({graph})
       // Changes some default colors
   // TODO Find a way of modifying globally or setting locally! See https://github.com/maxGraph/maxGraph/issues/192
   //constants.SHADOWCOLOR = '#C0C0C0';
@@ -659,7 +660,7 @@ export const YourComponent = ({ graph }) => {
     ]);
     setVariableFromEffect(graph);
 
-    let labelBackground = invert ? '#000000' : '#FFFFFF';
+  let labelBackground = invert ? '#000000' : '#FFFFFF';
   let fontColor = invert ? '#FFFFFF' : '#000000';
   let strokeColor = invert ? '#C0C0C0' : '#000000';
   let fillColor = invert ? 'none' : '#FFFFFF';
@@ -1114,7 +1115,7 @@ document.getElementById("import").onclick = () => {
     document.getElementById("zoom").onclick = () => graph.zoomIn();
     document.getElementById("zoomout").onclick = () => graph.zoomOut();
 
-      // Undo/redo
+  // Undo/redo
   let undoManager = new UndoManager();
   let listener = function (sender, evt) {
     undoManager.undoableEditHappened(evt.getProperty('edit'));
@@ -1154,63 +1155,10 @@ document.getElementById("import").onclick = () => {
     }; 
   }, []);
  
-    console.log(graph);
-    
-  return <div ref={graphContainerRef} style={{ width: '100%', height: '100%'}} />;
-  
-};
-
-
-export const FileUploader = ({ graph2 }) => {
-
-  const [xmlContent, setXmlContent] = useState(null);
-  console.log({graph2});
-
-  const handleOnChange = (event) => {
-    event.preventDefault();
-    if (event.target.files && event.target.files.length) {
-      const file = event.target.files[0];
-      if (file.name.endsWith('.xml')) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            const content = event.target.result;
-            setXmlContent(content);
-            let graph = {graph2};
-            // Используем переданный graph здесь
-            if (graph) {
-              new ModelXmlSerializer(graph.getDataModel()).import(content);
-              console.log("XML файл загружен и импортирован в модель данных графа.");
-            } else {
-              console.error("ОШИБКА СТОП");
-              console.log({graph2});
-            }
-          };
-        reader.readAsText(file);
-      } else {
-        console.log("Пожалуйста, выберите файл с расширением .xml");
-      }
-    }
-  };
+  console.log(graph);
 
   return (
-    <form className="file-uploader">
-      <label htmlFor="file-loader-button" className="file-uploader__custom-button">
-        {/* Ваш код для кастомной кнопки */}
-      </label>
-      <input
-        id="file-loader-button"
-        type="file"
-        accept=".xml"
-        className="file-uploader__upload-button"
-        onChange={handleOnChange}
-        style={{ display: 'none' }}
-      />
-      {xmlContent && (
-        <div className="file-uploader__xml-content">
-          {/* Ваш код для отображения содержимого XML */}
-        </div>
-      )}
-    </form>
+    <div ref={graphContainerRef} style={{ width: '100%', height: '100%' }} />
   );
 };
 
