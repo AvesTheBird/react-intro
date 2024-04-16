@@ -1,22 +1,23 @@
-import React, { useState, createContext, useContext } from 'react';
-import { YourComponent, FileUploader } from './components/GraphComponent'; // Предполагается, что FileUploader не экспортируется по умолчанию
-const ValueContext = createContext(null);
-export default function App() {
-  const [value, setValue] = useState(''); // Используем состояние для хранения значения графа
-  const handleChange = (value2) => {
-    console.log("бляяять");
-    setValue(value2); // Сохраняем новое значение графа
+import React, { useState } from 'react';
+import { YourComponent } from './components/GraphComponent'; // Исправлено на импорт по умолчанию
+import  FileUploader  from './components/file-uploader'; // Исправлено на импорт как член объекта
+
+function App() {
+  const [value, setValue] = useState('');
+
+  const handleChange = (newValue) => {
+    console.log("help");
+    setValue(newValue);
   };
-  let getValue = '';
-  console.log(getValue);
+
+  console.log(value);
+  
   return (
     <>
-      {/* Передаем функцию обновления графа и текущее значение в FileUploader */}
-      <FileUploader graph2={value} />
-      {/* Передаем функцию обновления графа в YourComponent */}
-      <YourComponent graph={handleChange} />
+      <FileUploader graph2={handleChange}/>
+      <YourComponent graph={value} />
     </>
   );
-  
-  console.log(getValue);
 }
+
+export default App;
