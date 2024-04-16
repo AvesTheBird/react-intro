@@ -1,0 +1,29 @@
+.file-uploader__upload-button {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  top: 100px
+}
+
+.file-uploader__custom-button {
+  cursor: pointer;
+  background-color: rgb(69, 69, 35);
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 20px;
+  width: 35px; height: 35px; left: 4px; top: 100px;
+}
+
+.file-uploader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  top: 100px
+}
+.file-uploader__preview {
+  width: 200px;
+  height: 200px;
+  border: 1px dashed gray;
+  border-radius: 12px;
+  top: 100px
+}

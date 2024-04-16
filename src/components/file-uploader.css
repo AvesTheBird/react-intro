@@ -1,0 +1,26 @@
+.file-uploader {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 999;
+  top: 423px;
+  left: 4px;
+  width: 2px; height: 2px; 
+
+}
+
+.file-uploader__upload-button {
+  position: absolute;
+  z-index: 999;
+  top: 300px; /* Изменяем значение top для опускания кнопки ниже */
+}
+
+.file-uploader__custom-button {
+  cursor: pointer;
+  background-color: yellow;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 20px;
+  z-index: 999;
+  opacity: 0.0;
+}
