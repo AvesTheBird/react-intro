@@ -66,52 +66,55 @@ const FileUploader = ({ graph2 }) => {
           reader.onload = (event) => {
             const content = event.target.result;
             setXmlContent(content);
+            graph2(content);
             // console.log(content);
             // Switch for black background and bright styles
-            let invert = false;
-            let MyCustomCellEditorHandler;
+            // let invert = false;
+            // let MyCustomCellEditorHandler;
 
-            if (invert) {
-              container.style.backgroundColor = 'black';
+            // if (invert) {
+            //   container.style.backgroundColor = 'black';
 
-              // White in-place editor text color
-              MyCustomCellEditorHandler = class extends CellEditorHandler {
-                startEditing(cell, trigger) {
-                  super.startEditing.apply(this, arguments);
+            //   // White in-place editor text color
+            //   MyCustomCellEditorHandler = class extends CellEditorHandler {
+            //     startEditing(cell, trigger) {
+            //       super.startEditing.apply(this, arguments);
 
-                  if (this.textarea != null) {
-                    this.textarea.style.color = '#FFFFFF';
-                  }
-                }
-              };
-            } else {
-              MyCustomCellEditorHandler = CellEditorHandler;
-            }
-            const container = createGraphContainer({
-              imageUrl: 'images/grid.gif'
-            });
-            let graph = new MyCustomGraph(container, null, [
-              MyCustomCellEditorHandler,
-              TooltipHandler,
-              SelectionCellsHandler,
-              PopupMenuHandler,
-              MyCustomConnectionHandler,
-              MyCustomSelectionHandler,
-              MyCustomPanningHandler,
-            ]);
+            //       if (this.textarea != null) {
+            //         this.textarea.style.color = '#FFFFFF';
+            //       }
+            //     }
+            //   };
+            // } else {
+            //   MyCustomCellEditorHandler = CellEditorHandler;
+            // }
+            // const container = createGraphContainer({
+            //   imageUrl: 'images/grid.gif'
+            // });
+            // let graph = new MyCustomGraph(container, null, [
+            //   MyCustomCellEditorHandler,
+            //   TooltipHandler,
+            //   SelectionCellsHandler,
+            //   PopupMenuHandler,
+            //   MyCustomConnectionHandler,
+            //   MyCustomSelectionHandler,
+            //   MyCustomPanningHandler,
+            // ]);
             // graph2(content);
             // console.log("Graph2"+graph2);
             
             // Используем переданный graph здесь
-            if (graph) {
-              new ModelXmlSerializer(graph.getDataModel()).import(content);
-              console.log("XML файл загружен и импортирован в модель данных графа.");
-              console.log({graph});
-              graph2(graph);
-            } else {
-              console.error("ОШИБКА СТОП");
-              console.log({graph2});
-            }
+            // if (graph) {
+            //   new ModelXmlSerializer(graph.getDataModel()).import(content);
+            //   console.log("XML файл загружен и импортирован в модель данных графа.");
+            //   console.log({graph});
+            //   graph2(graph);
+            // } else {
+            //   console.error("ОШИБКА СТОП");
+            //   console.log({graph2});
+            // }
+
+            
           };
         reader.readAsText(file);
       } else {

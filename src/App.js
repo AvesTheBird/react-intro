@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <FileUploader graph2={handleChange}/>
-      <YourComponent graph={value} />
+      <YourComponent dataGraph={value} />
     </>
   );
 }
